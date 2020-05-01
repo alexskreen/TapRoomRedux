@@ -3,14 +3,24 @@ import kegListReducer from "../../reducers/keg-list-reducer";
 describe("kegListReducer", () => {
 
   let action;
-  const kegData = {
-    brewery: "Great Notion",
-    beer: "Over Ripe",
-    beerType: "IPA - NE",
-    ABV: "7%",
-    pints: 124,
-    id: 1
-  }
+  const currentState = {
+    1: {
+      brewery: "Great Notion",
+      beer: "Over Ripe",
+      beerType: "IPA - NE",
+      ABV: "7%",
+      pints: 124,
+      id: 1
+    },
+    2: {
+      brewery: "Monkish",
+      beer: "Planets Gotta Roll",
+      beerType: "Double IPA - NE",
+      ABV: "8.3%",
+      pints: 124,
+      id: 2
+    },
+  };
 
   test("Should return default state if there is no action type passed into the reducer", () => {
     expect(kegListReducer({}, { type: null })).toEqual({});
@@ -39,6 +49,23 @@ describe("kegListReducer", () => {
       },
     });
   });
+
+    test("Should successfully delete a keg", () => {
+      action = {
+        type: "DELETE_KEG",
+        id: 1,
+      };
+      expect(kegListReducer(currentState, action)).toEqual({
+        2: {
+          brewery: "Monkish",
+          beer: "Planets Gotta Roll",
+          beerType: "Double IPA - NE",
+          ABV: "8.3%",
+          pints: 124,
+          id: 2,
+        },
+      });
+    });
 
 
 
