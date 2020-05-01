@@ -30,5 +30,17 @@ export default (state = {}, action) => {
           id: id,
         },
       });
+
+    case "DRINK_PINT":
+      return Object.assign({}, state, {
+        [id]: {
+          brewery: brewery,
+          beer: beer,
+          beerType: beerType,
+          ABV: ABV,
+          pints: pints -1,
+          id: id,
+        },
+      });
   }
 };

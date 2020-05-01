@@ -93,4 +93,28 @@ describe("kegListReducer", () => {
       },
     });
   });
+
+  test("Should successfully reduce pints by 1", () => {
+    const { brewery, beer, beerType, ABV, pints, id } = kegData;
+    action = {
+      type: "DRINK_PINT",
+      brewery: brewery,
+      beer: beer,
+      beerType: beerType,
+      ABV: ABV,
+      pints: pints,
+      id: id,
+    };
+
+    expect(kegListReducer({}, action)).toEqual({
+      [id]: {
+        brewery: brewery,
+        beer: beer,
+        beerType: beerType,
+        ABV: ABV,
+        pints: pints -1,
+        id: id,
+      },
+    });
+  });
 });
