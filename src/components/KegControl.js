@@ -4,6 +4,7 @@ import KegList from "./KegList";
 import KegDetail from "./KegDetail";
 import EditKegForm from "./EditKegForm";
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class KegControl extends React.Component {
   constructor(props) {
@@ -57,8 +58,8 @@ class KegControl extends React.Component {
     const { dispatch } = this.props;
     const action = {
       type: "DELETE_KEG",
-      id: id
-    }
+      id: id,
+    };
     dispatch(action);
     this.setState({ selectedKeg: null });
   };
@@ -128,6 +129,10 @@ class KegControl extends React.Component {
     );
   }
 }
+
+KegControl.propTypes = {
+  masterKegList: PropTypes.object
+};
 
 const mapStateToProps = state => {
   return {
