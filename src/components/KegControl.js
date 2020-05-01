@@ -66,7 +66,7 @@ class KegControl extends React.Component {
     this.setState({ editing: true });
   };
 
-  handleEditingTicketInList = (kegToEdit) => {
+  handleEditingKegInList = (kegToEdit) => {
     const { dispatch } = this.props;
     const { id, brewery, beer, beerType, ABV, pints } = kegToEdit;
     const action = {
@@ -90,9 +90,9 @@ class KegControl extends React.Component {
     let buttonText = null;
     if (this.state.editing) {
       currentlyVisibleState = (
-        <EditKegForm
-          keg={this.state.selectedKeg}
-          onEditKeg={this.handleEditingKegInList}
+        <KegList
+          kegList={this.props.masterKegList}
+          onKegSelection={this.handleChangingSelectedKeg}
         />
       );
       buttonText = "Return to Keg List";
