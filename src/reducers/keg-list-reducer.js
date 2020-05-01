@@ -18,5 +18,17 @@ export default (state = {}, action) => {
       return newState;
     default:
       return state;
+
+    case "EDIT_KEG":
+      return Object.assign({}, state, {
+        [id]: {
+          brewery: brewery,
+          beer: beer,
+          beerType: beerType,
+          ABV: ABV,
+          pints: pints,
+          id: id,
+        },
+      });
   }
 };
