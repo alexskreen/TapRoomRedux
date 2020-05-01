@@ -34,17 +34,17 @@ class KegControl extends React.Component {
     const { dispatch } = this.props;
     const { id, brewery, beer, beerType, ABV, pints } = newKeg;
     const action = {
-      type: 'ADD_KEG',
+      type: "ADD_KEG",
       id: id,
       brewery: brewery,
       beer: beer,
       beerType: beerType,
       ABV: ABV,
-      pints: pints
-    }
+      pints: pints,
+    };
     dispatch(action);
-    this.setState({formVisibleOnPage: false});
-  }
+    this.setState({ formVisibleOnPage: false });
+  };
 
   handleChangingSelectedKeg = (id) => {
     const selectedKeg = this.state.masterKegList.filter(
@@ -54,25 +54,33 @@ class KegControl extends React.Component {
   };
 
   handleDeletingKeg = (id) => {
-    const newMasterKegList = this.state.masterKegList.filter(
-      (keg) => keg.id !== id
-    );
-    this.setState({
-      masterKegList: newMasterKegList,
-      selectedKeg: null,
-    });
+    const { dispatch } = this.props;
+    const action = {
+      type: "DELETE_KEG",
+      id: id
+    }
+    dispatch(action);
+    this.setState({ selectedKeg: null });
   };
 
   handleEditClick = () => {
     this.setState({ editing: true });
   };
 
-  handleEditingKegInList = (kegToEdit) => {
-    const editedMasterKegList = this.state.masterKegList
-      .filter((keg) => keg.id !== this.state.selectedKeg.id)
-      .concat(kegToEdit);
+  handleEditingTicketInList = (kegToEdit) => {
+    const { dispatch } = this.props;
+    const { id, brewery, beer, beerType, ABV, pints } = kegToEdit;
+    const action = {
+      type: "ADD_KEG",
+      id: id,
+      brewery: brewery,
+      beer: beer,
+      beerType: beerType,
+      ABV: ABV,
+      pints: pints,
+    };
+    dispatch(action);
     this.setState({
-      masterKegList: editedMasterKegList,
       editing: false,
       selectedKeg: null,
     });
