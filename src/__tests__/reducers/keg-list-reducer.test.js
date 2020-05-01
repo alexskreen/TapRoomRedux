@@ -68,4 +68,29 @@ describe("kegListReducer", () => {
         id: 2 }
     });
   });
+
+
+  test("Should successfully edit keg in masterKegList", () => {
+    const { brewery, beer, beerType, ABV, pints, id } = kegData;
+    action = {
+      type: "EDIT_KEG",
+      brewery: brewery,
+      beer: beer,
+      beerType: beerType,
+      ABV: ABV,
+      pints: pints,
+      id: id,
+    };
+
+    expect(kegListReducer({}, action)).toEqual({
+      [id]: {
+        brewery: brewery,
+        beer: beer,
+        beerType: beerType,
+        ABV: ABV,
+        pints: pints,
+        id: id,
+      },
+    });
+  });
 });
