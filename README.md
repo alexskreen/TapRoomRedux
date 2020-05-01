@@ -41,13 +41,14 @@ _Please visit the [Node.js website](https://nodejs.org/en/download/) for install
 
 _Clone this repository via Terminal using the following commands:_
 * _$ cd desktop_
-* _$ git clone {url to this repository}_
+* _$ git clone https://github.com/alexskreen/TapRoomWeek2_
 * _$ cd Tap-Room_
 _Then, confirm that you have navigated to the tap-house project directory by entering "pwd" in Terminal._
 
 _Next, install npm at the project's root directory via the following commands:_
 * _$ npm install_
-* _$ npm run build_
+* _$npm install fsevents@1.2.11_
+* _$ npm start_
 
 _Open the contents of the directory in a text editor or IDE of your choice (e.g., to open the contents of the directory in Visual Studio Code on macOS, enter the command "code ." in Terminal)._
 
