@@ -5,48 +5,30 @@ import KegDetail from "./KegDetail";
 import EditKegForm from "./EditKegForm";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as a from './../actions';
 
 class KegControl extends React.Component {
   constructor(props) {
     super(props);
     console.log(props);
     this.state = {
-     selectedKeg: null,
+      selectedKeg: null,
       editing: false,
     };
   }
 
   handleClick = () => {
-    if (this.state.selectedKeg != null) {
-      this.setState({
-        selectedKeg: null,
-        editing: false,
-      });
-    } else {
-      const { dispatch } = this.props;
-      const action = {
-        type: 'TOGGLE_FORM'
-      }
-      dispatch(action);
-    }
+    const { dispatch } = this.props;
+    const action = a.toggleForm();
+    dispatch(action);
+    this.setState({ selectedKeg: null });
   };
 
   handleAddingNewKegToList = (newKeg) => {
     const { dispatch } = this.props;
-    const { id, brewery, beer, beerType, ABV, pints } = newKeg;
-    const action = {
-      type: "ADD_KEG",
-      id: id,
-      brewery: brewery,
-      beer: beer,
-      beerType: beerType,
-      ABV: ABV,
-      pints: pints,
-    };
+    const action = a.addKeg(newKeg);
     dispatch(action);
-    const action2 = {
-      type: 'TOGGLE_FORM'
-    }
+    const action2 = a.toggleForm();
     dispatch(action2);
   };
 
@@ -57,10 +39,7 @@ class KegControl extends React.Component {
 
   handleDeletingKeg = (id) => {
     const { dispatch } = this.props;
-    const action = {
-      type: "DELETE_KEG",
-      id: id,
-    };
+    const action = a.deleteKeg(id);
     dispatch(action);
     this.setState({ selectedKeg: null });
   };
@@ -71,16 +50,7 @@ class KegControl extends React.Component {
 
   handleEditingKegInList = (kegToEdit) => {
     const { dispatch } = this.props;
-    const { id, brewery, beer, beerType, ABV, pints } = kegToEdit;
-    const action = {
-      type: "ADD_KEG",
-      id: id,
-      brewery: brewery,
-      beer: beer,
-      beerType: beerType,
-      ABV: ABV,
-      pints: pints,
-    };
+    const action = a.addKeg(kegToEdit);
     dispatch(action);
     this.setState({
       editing: false,
