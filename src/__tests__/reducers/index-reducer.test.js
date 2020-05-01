@@ -19,4 +19,20 @@ describe("rootReducer", () => {
     );
   });
 
+  test("Check that initial state of kegListReducer matches root reducer", () => {
+    const action = {
+      type: "ADD_KEG",
+      brewery: "Great Notion",
+      beer: "Over Ripe",
+      beerType: "IPA - NE",
+      ABV: "7%",
+      pints: 124,
+      id: 1,
+    };
+    store.dispatch(action);
+    expect(store.getState().masterKegList).toEqual(
+      kegListReducer(undefined, action)
+    );
+  });
+
 });

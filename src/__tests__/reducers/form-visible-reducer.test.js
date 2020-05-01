@@ -9,5 +9,4 @@ describe("formVisibleReducer", () => {
     expect(formVisibleReducer(false, { type: "TOGGLE_FORM" })).toEqual(true);
   });
 
-
 });
