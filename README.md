@@ -48,6 +48,7 @@ _Then, confirm that you have navigated to the tap-house project directory by ent
 _Next, install npm at the project's root directory via the following commands:_
 * _$ npm install_
 * _$npm install fsevents@1.2.11_
+* _npm install redux@4.0.5 react-redux@7.1.3_
 * _$ npm start_
 
 _Open the contents of the directory in a text editor or IDE of your choice (e.g., to open the contents of the directory in Visual Studio Code on macOS, enter the command "code ." in Terminal)._
